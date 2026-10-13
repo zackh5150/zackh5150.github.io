@@ -548,3 +548,58 @@ a{ color: inherit; }
 .gate__text{ color:#3A4757; margin:0 0 1.75rem; max-width: 46ch; }
 .gate__text--small{ font-family: var(--mono); font-size:.75rem; margin-top:1.25rem; }
 .gate__btn{ cursor:pointer; font-size:.85rem; padding:.85rem 1.4rem; }
+
+/* ============ OFF THE CLOCK ============
+   Browns colors on a football field: brown turf, faint yard lines and
+   numbers, an orange/white stripe up top. Colors only, no team marks. */
+:root{
+  --brown:   #311D00;
+  --brown-2: #24160A;
+  --orange:  #FF3C00;
+  --orange-l:#FF7A45;
+  --cream:   #F3E9DC;
+}
+.clock{
+  position: relative;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 calc(10% - 1px), rgba(243,233,220,.07) calc(10% - 1px) 10%),
+    var(--brown);
+  color: var(--cream);
+  border-top: 10px solid var(--orange);
+  box-shadow: inset 0 6px 0 var(--cream), inset 0 12px 0 var(--orange);
+}
+.clock .h2{ color: var(--cream); }
+.clock .lede{ color: #CDB89C; }
+.clock__yards{
+  position: absolute; left: 0; right: 0; top: 2.2rem;
+  display: flex; justify-content: space-around; pointer-events: none;
+  font-family: var(--display); font-weight: 800; font-size: clamp(1.4rem, 3vw, 2.4rem);
+  color: rgba(243,233,220,.07); letter-spacing: .05em;
+}
+.clock__grid{
+  list-style: none; margin: 2.2rem 0 0; padding: 0;
+  display: grid; gap: 1rem; grid-template-columns: 1fr;
+}
+@media (min-width: 640px){ .clock__grid{ grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px){ .clock__grid{ grid-template-columns: repeat(4, 1fr); } .clock__tile--big{ grid-column: span 2; } }
+.clock__tile{
+  position: relative;
+  background: rgba(243,233,220,.05);
+  border: 1px solid rgba(243,233,220,.14);
+  border-radius: 4px;
+  padding: 1.2rem 1.25rem 1.3rem;
+  transition: border-color .18s, transform .18s, background .18s;
+}
+.clock__tile:hover{ border-color: var(--orange-l); background: rgba(243,233,220,.08); transform: translateY(-2px); }
+.clock__tile svg{
+  width: 34px; height: 34px; display: block; margin-bottom: .8rem;
+  fill: none; stroke: var(--orange-l); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.clock__tile h3{
+  font-family: var(--display); font-weight: 700; font-size: 1.15rem;
+  letter-spacing: -.01em; margin: 0 0 .35rem; color: #fff;
+}
+.clock__tile p{ margin: 0; color: #E2D3BF; font-size: .95rem; line-height: 1.6; }
+.foot__browns{ color: var(--orange-l); font-weight: 500; }
+@media (prefers-reduced-motion: reduce){ .clock__tile:hover{ transform: none; } }
