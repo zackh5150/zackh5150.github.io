@@ -603,3 +603,81 @@ a{ color: inherit; }
 .clock__tile p{ margin: 0; color: #E2D3BF; font-size: .95rem; line-height: 1.6; }
 .foot__browns{ color: var(--orange-l); font-weight: 500; }
 @media (prefers-reduced-motion: reduce){ .clock__tile:hover{ transform: none; } }
+
+/* Two icons in one tile (chicken + goat). */
+.clock__icons{ display:flex; gap:.5rem; margin-bottom:.8rem; }
+.clock__icons svg{ margin-bottom:0; }
+
+/* A flag on a non-link card (Senior Design: "Open source"). */
+.card--flagged .card__title{ padding-right: 6.5rem; }
+
+/* "Currently" line under the hero. */
+.hero__now{
+  display:flex; align-items:baseline; gap:.55rem;
+  font-family: var(--mono); font-size:.78rem; letter-spacing:.03em;
+  color: var(--slate); margin: -1rem 0 2rem; max-width: 90ch;
+}
+.hero__dot{
+  flex:none; width:.55rem; height:.55rem; border-radius:50%;
+  background: var(--gold); box-shadow: 0 0 0 3px rgba(224,162,43,.25);
+  transform: translateY(-1px);
+}
+
+.foot__print{
+  font: inherit; color: inherit; background: none; border: 0; padding: 0;
+  text-decoration: underline; cursor: pointer;
+}
+.foot__print:hover{ color: var(--gold); }
+
+/* ============ PRINT ============
+   A clean, compact printout: black on white, no nav, no ribbon or buttons,
+   no dark bands, and nothing split across pages mid-entry. */
+@media print{
+  @page{ margin: .6in; }
+  html, body{ background:#fff !important; color:#000 !important; font-size: 10.5pt; }
+  .topbar, .skip, .hero__actions, .ribbon, .clock__yards, .foot__printwrap, .gate{ display:none !important; }
+  .band, .band--ink, .clock, .contact, .foot{
+    background:#fff !important; color:#000 !important; box-shadow:none !important;
+    border:0 !important; padding: 10pt 0 !important;
+  }
+  .hero{ padding: 0 0 6pt !important; }
+  .hero__name{ font-size: 28pt !important; margin-bottom: 6pt !important; }
+  .hero__thesis{ font-size: 11pt !important; max-width:none !important; }
+  .hero__now{ margin: 4pt 0 0 !important; color:#000 !important; }
+  .h2, .band--ink .h2, .clock .h2, .contact__head{ color:#000 !important; font-size: 16pt !important; }
+  .lede, .log__date, .log__org, .tag, .kit__label, .card__url, .card__stack, .clock .lede{ color:#444 !important; }
+  .log__role, .card__title, .clock__tile h3, .edu__school{ color:#000 !important; }
+  .log__points li, .kit__list, .card__text, .clock__tile p, .edu__note, .prose p{ color:#111 !important; }
+  .log__points li::before{ background:#000 !important; }
+  .log__item, .card, .clock__tile, .kit__group, .edu{ break-inside: avoid; }
+  .cards{ background:none !important; border:0 !important; gap: 6pt !important; }
+  .card, .clock__tile{ border:1px solid #bbb !important; background:#fff !important; padding: 8pt !important; }
+  .card__flag{ border:1px solid #000; background:#fff !important; color:#000 !important; }
+  .clock__tile svg{ stroke:#000 !important; width:20px; height:20px; }
+  .contact__links a{ color:#000 !important; border-color:#bbb !important; }
+  a{ color:#000 !important; text-decoration:none !important; }
+  .clock__tile:hover{ transform:none !important; }
+
+  /* White-on-dark text needs to turn black on paper. */
+  .log__points strong, .contact__k, .contact__v, .contact__eyebrow{ color:#000 !important; }
+
+  /* Compact: one column for split layouts, tight spacing, two-up cards. */
+  html, body{ font-size: 10pt; }
+  .band, .clock, .contact{ padding: 5pt 0 !important; }
+  .wrap--split, .log__item, .kit__group{ display:block !important; }
+  .h2, .h2--wide{ margin: 8pt 0 3pt !important; }
+  .lede{ margin: 0 0 4pt !important; }
+  .prose p, .log__points li{ margin: 0 0 3pt !important; max-width:none !important; }
+  .log__item{ padding: 4pt 0 !important; border:0 !important; }
+  .log__meta{ margin-bottom: 1pt; }
+  .log__org{ margin: 0 0 3pt !important; }
+  .kit__group{ padding: 2pt 0 !important; border:0 !important; }
+  .cards{ grid-template-columns: repeat(2, 1fr) !important; }
+  .card__text{ margin: 3pt 0 5pt !important; }
+  .clock__grid{ grid-template-columns: repeat(3, 1fr) !important; gap: 5pt !important; margin-top: 4pt !important; }
+  .clock__tile--big{ grid-column: auto !important; }
+  .clock__tile svg, .clock__icons{ margin-bottom: 3pt !important; }
+  .edu__facts > div{ padding: 1pt 0 !important; }
+  .contact__head{ font-size: 12pt !important; margin-bottom: 4pt !important; }
+  .contact__links a{ padding: 3pt 0 !important; }
+}
